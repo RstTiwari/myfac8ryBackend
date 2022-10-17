@@ -13,9 +13,6 @@ const router = require("./app/controller/userController")
 app.use("/api", router);
 
 
-
-
-
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => 
