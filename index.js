@@ -15,7 +15,10 @@ routes(app)
 
 
 
+
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(process.env.PORT || 3000))
+  .then(() =>
+    app.listen(port, () => console.log(`server is running on the port ${port}`))
+  )
   .catch((error) => console.log(`${error} did not connect`));
