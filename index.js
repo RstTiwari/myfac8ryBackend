@@ -8,9 +8,9 @@ app.use(express.json());
 app.use(cors())
 const port = process.env.port || 3066
 const CONNECTION_URL = process.env.DB_URL;
+const router = require("./app/controller/userController")
 
-const routes = require("./app/routes.js");
-routes(app)
+app.use("/api", router);
 
 
 
@@ -18,7 +18,6 @@ routes(app)
 
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() =>
-    app.listen(port, () => console.log(`server is running on the port ${port}`))
-  )
+  .then(() => 
+  app.listen(port, ()=> console.log(`server is running on the port ${port}`)))
   .catch((error) => console.log(`${error} did not connect`));
