@@ -8,14 +8,15 @@ app.use(express.json());
 app.use(cors())
 const port = process.env.port || 3066
 const CONNECTION_URL = process.env.DB_URL;
+const router = require("./app/controller/userController")
 
-const routes = require("./app/routes.js");
-routes(app)
+app.use("/api", router);
 
 
 
 
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(process.env.PORT || 3000))
+  .then(() => 
+  app.listen(port, ()=> console.log(`server is running on the port ${port}`)))
   .catch((error) => console.log(`${error} did not connect`));
