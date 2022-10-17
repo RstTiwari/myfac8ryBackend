@@ -17,9 +17,5 @@ routes(app)
 
 mongoose
   .connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() =>
-    app.listen(port, () =>
-      console.log(`Server Running on Port: http://localhost:${port}`)
-    )
-  )
+  .then(() => app.listen(process.env.PORT || 3000))
   .catch((error) => console.log(`${error} did not connect`));
